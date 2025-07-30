@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 # Path del plugin
@@ -5,7 +6,6 @@ MYPLUGIN_DIR=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 
 function install_myplugin {
     echo "[myplugin] Installing myplugin..."
-    # Installa le dipendenze Python se presenti
     if [[ -f "$MYPLUGIN_DIR/requirements.txt" ]]; then
         pip install -r "$MYPLUGIN_DIR/requirements.txt"
     fi
@@ -13,13 +13,18 @@ function install_myplugin {
 
 function configure_myplugin {
     echo "[myplugin] Configuring myplugin..."
-    # Aggiungi qui eventuali configurazioni
+    # Eventuali configurazioni
 }
 
 function init_myplugin {
     echo "[myplugin] Initializing myplugin..."
-    # Avvia eventuali servizi o esegui codice di inizializzazione
-    # python3 $MYPLUGIN_DIR/main.py
+    # Avvia il servizio come processo DevStack
+    run_process myplugin "python3 $MYPLUGIN_DIR/myplugin/service.py"
+}
+
+function stop_myplugin {
+    echo "[myplugin] Stopping myplugin..."
+    stop_process myplugin
 }
 
 # Hook DevStack
@@ -29,4 +34,6 @@ elif [[ "$1" == "stack" && "$2" == "post-config" ]]; then
     configure_myplugin
 elif [[ "$1" == "stack" && "$2" == "extra" ]]; then
     init_myplugin
+elif [[ "$1" == "unstack" ]]; then
+    stop_myplugin
 fi
