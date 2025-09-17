@@ -5,8 +5,8 @@ def send_email(subject, body, to_email):
     """
     Invia un'email usando il server SMTP di Gmail.
     """
-    from_email = "armando96dangelo@gmail.com"
-    password = "drkexsuuhwcwuqkc"
+    from_email = ""
+    password = ""
 
     msg = MIMEText(body)
     msg['Subject'] = subject
