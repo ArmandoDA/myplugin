@@ -1,12 +1,15 @@
+# In questo file viene gestita la logica per inviare una mail
+
+import os
+from dotenv import load_dotenv
 import smtplib
 from email.mime.text import MIMEText
 
+load_dotenv()  # Carica le variabili dal file .env
+
 def send_email(subject, body, to_email):
-    """
-    Invia un'email usando il server SMTP di Gmail.
-    """
-    from_email = ""
-    password = ""
+    from_email = os.getenv("EMAIL_ADDRESS")
+    password = os.getenv("EMAIL_PASSWORD")
 
     msg = MIMEText(body)
     msg['Subject'] = subject

@@ -1,19 +1,22 @@
+# In questo file viene gestita la logica per 
+# recuperare informazioni base da OpenStack (es. istanze attive)
 
 from novaclient import client as nova_client
 from novaclient.exceptions import ClientException, Unauthorized, EndpointNotFound
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # Carica le variabili dal file .env
 
 def get_openstack_info():
-    """
-    Recupera informazioni base da OpenStack (es. istanze attive).
-    Gestisce errori di connessione, autenticazione e API.
-    """
+
     try:
         nova = nova_client.Client(
             "2.1",
-            username="admin",
-            password="nomoresecret",
-            project_name="admin",
-            auth_url="http://192.168.1.168/identity"
+            username=os.getenv("OS_USERNAME"),
+            password=os.getenv("OS_PASSWORD"),
+            project_name=os.getenv("OS_PROJECT_NAME"),
+            auth_url=os.getenv("OS_AUTH_URL")
         )
 
         servers = nova.servers.list()
