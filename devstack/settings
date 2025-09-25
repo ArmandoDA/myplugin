@@ -1,0 +1,11 @@
+# Nome del plugin
+define_plugin myplugin
+
+# Abilita il servizio
+enable_service myplugin
+
+# Dipendenze (se ce ne sono)
+# plugin_requires your_plugin_name other_plugin_name
+
+# Variabili di configurazione
+MY_PLUGIN_VAR=${MY_PLUGIN_VAR:-default_value}
