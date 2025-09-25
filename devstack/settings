@@ -1,11 +1,8 @@
-# Nome del plugin
+# Definizione del plugin
 define_plugin myplugin
 
-# Abilita il servizio
+# Abilitazione del servizio
 enable_service myplugin
 
-# Dipendenze (se ce ne sono)
-# plugin_requires your_plugin_name other_plugin_name
-
 # Variabili di configurazione
-MY_PLUGIN_VAR=${MY_PLUGIN_VAR:-default_value}
+MYPLUGIN_PORT=${MYPLUGIN_PORT:-8080}
