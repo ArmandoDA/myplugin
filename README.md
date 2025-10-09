@@ -1,18 +1,30 @@
-# MyPlugin
+# MyPlugin - OpenStack Automation Plugin
 
-Plugin creato per OpenStack: invia notifiche tramite email quando viene attivato o disattivato. Inoltre, quando è attivo invia un'ulteriore email contenente le info principali di OpenStack.
+## 📌 Descrizione
 
-## Funzionalità
+**MyPlugin** è un plugin Python che automatizza operazioni su macchine virtuali OpenStack. Utilizza `python-novaclient` per interagire con l'infrastruttura e invia notifiche via email. Le funzionalità principali includono:
 
-- Invio email all'attivazione
-- Invio parametri OpenStack via email
-- Invio email alla disattivazione
+- Recupero dello stato delle VM
+- Invio email con informazioni sulle VM
+- Ridimensionamento automatico delle VM verso flavor con metà risorse
+- Creazione di flavor personalizzati se necessario
+- Conferma automatica del resize
 
+---
 
+## ⚙️ Requisiti software
+
+- Python 3.7+
+- OpenStack con Keystone v3
+- Permessi per accedere alle VM e creare flavor
+- Accesso SMTP per invio email (gestito dal modulo `notifier`)
+- File `.env` con variabili di configurazione
+
+---
 
 # INSTALLAZIONE MACCHINA VIRTUALE
 
-    -Requisiti
+    -Requisiti di sistema
         Hypervisor: VirtualBox (utilizzato) / VMware / KVM
         ISO: Ubuntu Server 22.04 LTS (consigliato)
     -Risorse consigliate:
@@ -76,6 +88,3 @@ Plugin creato per OpenStack: invia notifiche tramite email quando viene attivato
         http://<IP_VM>:80 
     -Se non si conosce l'indirizzo della VM (dovrebbe essere 192.168.1.168) utilizzare il comando:    
         hostname -I
-        
-
-
